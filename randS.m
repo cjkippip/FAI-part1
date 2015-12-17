@@ -36,7 +36,7 @@ disp('Goal State:');
 puz2
 %%
 
-
+tic
 while 1
     % If the game is finished
     if isequal(puz1{2,2},'A')&&...
@@ -49,6 +49,7 @@ while 1
         disp('Goal State:');
         puz2
         disp('Finished');
+        toc
         break;
     end
     
