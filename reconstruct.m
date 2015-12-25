@@ -1,10 +1,9 @@
 function path = reconstruct(node)
-    path(1) = node;
-    i = 2;
-    
-    while ~isempty(node.parent)
-        node = node.parent;
-        path(i) = node;
+    i = 1;  
+    path(i) = node;
+    while ~isempty(node.Parent)
+        node = node.Parent;
         i = i + 1;
+        path(i) = node;
     end
 end

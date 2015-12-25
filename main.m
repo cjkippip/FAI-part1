@@ -1,7 +1,8 @@
 %{
 Fundation of AI coursework part 1
 %}
-
+clc
+clear
 N=4;
 % Initial state
 puz1=cell(N,N);
@@ -21,11 +22,8 @@ puz2(3,2)={'B'};
 puz2(4,2)={'C'};
 goalNode=node(puz2);
 %%
-
-
-
-
-
-
+% Depth-First Search
+[depth, time, path] = DFS(startNode);
+%%
 
 
