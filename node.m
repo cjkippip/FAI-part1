@@ -6,7 +6,7 @@ classdef node
         Move
         Parent
     end
-%%    
+    
     methods
         function nodeData=node(puzzle)
             nodeData.State=puzzle;
@@ -43,6 +43,9 @@ classdef node
                 obj.State{row,col}=obj.State{row,col+1};
                 obj.State{row,col+1}='G';
             end
-        end         
-    end   
+        end 
+        
+                                
+        
+    end
 end
