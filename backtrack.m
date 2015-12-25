@@ -1,4 +1,4 @@
-function path = reconstruct(node)
+function path = backtrack(node)
     i = 1;  
     path(i) = node;
     while ~isempty(node.Parent)

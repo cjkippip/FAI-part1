@@ -4,26 +4,85 @@ Fundation of AI coursework part 1
 clc
 clear
 N=4;
-% Initial state
-puz1=cell(N,N);
-puz1(:,:)={' '};
-puz1(4,4)={'G'};
-puz1(4,1)={'A'};
-puz1(4,2)={'B'};
-puz1(4,3)={'C'};
-startNode=node(puz1);
+% tile(4)='A',tile(8)='B',tile(12)='C',tile(16)='G'
+tile={' ',' ',' ','A',...
+    ' ',' ',' ','B',...
+    ' ',' ',' ','C',...
+    ' ',' ',' ','G'};
+% start state
+startState=ones(N,N);
+for i=1:N*N
+    startState(i)=i;
+end
+startNode=node(startState);
 
-% Goal state
-puz2=cell(N,N);
-puz2(:,:)={' '};
-puz2(4,4)={'G'};
-puz2(2,2)={'A'};
-puz2(3,2)={'B'};
-puz2(4,2)={'C'};
-goalNode=node(puz2);
 %%
 % Depth-First Search
-[depth, time, path] = DFS(startNode);
+% [depth, time, path] = DFS(startNode);
 %%
+tic
+visited={}; % null cell
+stack=startNode; % stack stores nodes that is unvisited
+indx=1; % index of stack
 
+while indx > 0
+    currNode=stack(indx);
+    indx=indx - 1; % remove visited node
+    visited{1,length(visited)+1} = currNode.State; % add visited node
+    currDepth=currNode.Depth;
+    currState=currNode.State;
+    currDepth
+    currState
+%% 
+    % Estimate if get the goalNode(don't care about the position of agent)
+    % Just care about the positions of 'A', 'B' and 'C'.
+    if (currNode.State(2,2)==4 && ...
+        currNode.State(3,2)==8 && ...
+        currNode.State(4,2)==12)
+        path=backtrack(currNode); % backtrack the path of solution
+        depth=currNode.Depth;        
+        time=toc;
+        return        
+    elseif(currNode.Depth<=14) % 1.with limitation      
+%     else % 2.no limitation
+%%
+        nodeMoveUp = moveUp(currNode); % node after move up
+        flag=isVisited(nodeMoveUp,visited); % flag of isVisited
+        % if the the state after moving is not equal to 
+        % current node's state and it is not visited
+        if(~isequal(nodeMoveUp.State, currNode.State) && flag==0)
+            nodeMoveUp.Parent = currNode; % parent node is current node           
+            nodeMoveUp.Depth = currNode.Depth + 1;
+            indx = indx + 1;
+            stack(indx) = nodeMoveUp; % push in stack            
+        end
+%%
+        nodeMoveDown = moveDown(currNode);
+        flag=isVisited(nodeMoveDown,visited);
+        if(~isequal(nodeMoveDown.State, currNode.State) && flag==0)
+            nodeMoveDown.Parent = currNode;
+            nodeMoveDown.Depth = currNode.Depth + 1;
+            indx = indx + 1;
+            stack(indx) = nodeMoveDown;        
+        end  
+%%
+        nodeMoveLeft = moveLeft(currNode);
+        flag=isVisited(nodeMoveLeft,visited);
+        if(~isequal(nodeMoveLeft.State, currNode.State) && flag==0)
+            nodeMoveLeft.Parent = currNode;
+            nodeMoveLeft.Depth = currNode.Depth + 1;
+            indx = indx + 1;
+            stack(indx) = nodeMoveLeft;
+        end
+%%
+        nodeMoveRight = moveRight(currNode);
+        flag=isVisited(nodeMoveRight,visited);
+        if(~isequal(nodeMoveRight.State, currNode.State) && flag==0)
+            nodeMoveRight.Parent = currNode;
+            nodeMoveRight.Depth = currNode.Depth + 1;
+            indx = indx + 1;
+            stack(indx) = nodeMoveRight;
+        end
+    end
+end
 
