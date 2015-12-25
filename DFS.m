@@ -2,23 +2,24 @@
 Fundation of AI coursework part 1
 Depth-First Search
 %}
-function [depth, time, path] = DFS(start_node)
+function [depth, time, path] = DFS(startNode)
 
 tic
-visited={};
-stack=start_node;
-stack_index = 1;
+visited={};% null cell
+stack=startNode;
+indx=1;
 
-while stack_index > 0
-    node = stack(stack_index);
-    stack_index = stack_index - 1;
+while indx > 0
+    node=stack(indx);
+    indx=indx - 1;
     visited{1,length(visited)+1} = node.State;
 
-    if isequal(node.State{2,2},'A')&&...
-        isequal(node.State{3,2},'B')&&isequal(node.State{4,2},'C')
+    % Estimate if get the goalNode(don't care about the position of agent)
+    if isequal(node.State{2,2},'A') && ...
+        isequal(node.State{3,2},'B') && isequal(node.State{4,2},'C')
         path=reconstruct(node);
         depth=node.Depth;        
-        time = toc;
+        time=toc;
         return
     elseif(node.Depth<=14)
         
@@ -27,11 +28,10 @@ while stack_index > 0
         if(~isequal(nodeMoveUp.State, node.State) && flag==0)
             nodeMoveUp.Parent = node;            
             nodeMoveUp.Depth = node.Depth + 1;
-            stack_index = stack_index + 1;
-            stack(stack_index) = nodeMoveUp;
-            currDepth=nodeMoveUp.Depth-1;
-            nodeMoveUp.State
-            currDepth
+            indx = indx + 1;
+            stack(indx) = nodeMoveUp;
+            nodeMoveUp.Depth
+            nodeMoveUp.State           
         end
 
         nodeMoveDown = moveDown(node);
@@ -39,11 +39,10 @@ while stack_index > 0
         if(~isequal(nodeMoveDown.State, node.State) && flag==0)
             nodeMoveDown.Parent = node;
             nodeMoveDown.Depth = node.Depth + 1;
-            stack_index = stack_index + 1;
-            stack(stack_index) = nodeMoveDown;
-            currDepth=nodeMoveDown.Depth-1;
-            nodeMoveDown.State
-            currDepth
+            indx = indx + 1;
+            stack(indx) = nodeMoveDown;
+            nodeMoveDown.Depth;
+            nodeMoveDown.State          
         end  
 
         nodeMoveLeft = moveLeft(node);
@@ -51,11 +50,10 @@ while stack_index > 0
         if(~isequal(nodeMoveLeft.State, node.State) && flag==0)
             nodeMoveLeft.Parent = node;
             nodeMoveLeft.Depth = node.Depth + 1;
-            stack_index = stack_index + 1;
-            stack(stack_index) = nodeMoveLeft;
-            currDepth=nodeMoveLeft.Depth-1;
+            indx = indx + 1;
+            stack(indx) = nodeMoveLeft;
+            nodeMoveLeft.Depth
             nodeMoveLeft.State
-            currDepth
         end
 
         nodeMoveRight = moveRight(node);
@@ -63,11 +61,10 @@ while stack_index > 0
         if(~isequal(nodeMoveRight.State, node.State) && flag==0)
             nodeMoveRight.Parent = node;
             nodeMoveRight.Depth = node.Depth + 1;
-            stack_index = stack_index + 1;
-            stack(stack_index) = nodeMoveRight;
-            currDepth=nodeMoveRight.Depth-1;
+            indx = indx + 1;
+            stack(indx) = nodeMoveRight;
+            nodeMoveRight.Depth
             nodeMoveRight.State
-            currDepth
         end
 
     end
