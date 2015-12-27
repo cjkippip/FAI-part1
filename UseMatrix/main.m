@@ -22,4 +22,8 @@ startNode=node(startState);
 %%
 % Depth-First Search without considering visited nodes
 % [depth, time, path] = DFS(startNode);
+%%
+% Breadth-First Search 
+[depth, time, path] = BFS(startNode);
+
 
