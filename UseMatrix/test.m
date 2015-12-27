@@ -67,7 +67,10 @@ visited{1,length(visited)+1} = startState;
 visited{1,length(visited)+1} = node2.State;
 %%
 flag=isVisited(startNode,visited);
-
+%%
+if 1~=2
+    disp('sssss');
+end
 
 
 

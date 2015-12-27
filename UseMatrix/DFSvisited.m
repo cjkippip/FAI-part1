@@ -1,25 +1,11 @@
 %{
 Fundation of AI coursework part 1
+Depth-First Search considering visited nodes
+1.with depth limitation   
+2.no depth limitation
 %}
-clc
-clear
-N=4;
-% tile(4)='A',tile(8)='B',tile(12)='C',tile(16)='G'
-tile={' ',' ',' ','A',...
-    ' ',' ',' ','B',...
-    ' ',' ',' ','C',...
-    ' ',' ',' ','G'};
-% start state
-startState=ones(N,N);
-for i=1:N*N
-    startState(i)=i;
-end
-startNode=node(startState);
+function [depth, time, path] = DFSvisited(startNode)
 
-%%
-% Depth-First Search
-% [depth, time, path] = DFS(startNode);
-%%
 tic
 visited={}; % null cell
 stack=startNode; % stack stores nodes that is unvisited
@@ -43,8 +29,8 @@ while indx > 0
         depth=currNode.Depth;        
         time=toc;
         return        
-    elseif(currNode.Depth<=14) % 1.with limitation      
-%     else % 2.no limitation
+    elseif(currNode.Depth<=14) % 1.with depth limitation      
+%     else % 2.no depth limitation
 %%
         nodeMoveUp = moveUp(currNode); % node after move up
         flag=isVisited(nodeMoveUp,visited); % flag of isVisited
@@ -85,4 +71,9 @@ while indx > 0
         end
     end
 end
+    
+end
+
+
+
 
