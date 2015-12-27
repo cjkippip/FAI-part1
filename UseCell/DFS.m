@@ -29,7 +29,7 @@ while indx > 0
         depth=currNode.Depth;        
         time=toc;
         return        
-    elseif(currNode.Depth<=20) % 1.with limitation      
+    elseif(currNode.Depth<=14) % 1.with limitation      
 %     else % 2.no limitation
 %%
         nodeMoveUp = moveUp(currNode); % node after move up

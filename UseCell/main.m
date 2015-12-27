@@ -24,8 +24,7 @@ goalNode=node(puz2);
 
 %%
 % Depth-First Search considering visited nodes
-% [depth, time, path] = DFS(startNode);
+[depth, time, path] = DFS(startNode);
 %%
-% Depth-First Search without considering visited nodes
-% [depth, time, path] = DFS(startNode);
+
 

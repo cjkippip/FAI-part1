@@ -22,13 +22,12 @@ while indx <= length(queue)
 %% 
     % Estimate if get the goalNode(don't care about the position of agent)
     % Just care about the positions of 'A', 'B' and 'C'.
-    if (currNode.State(2,2)==1 && ...
-        currNode.State(3,2)==2 && ...
-        currNode.State(4,2)==3)
+    if (currNode.State(2,2)==4 && ...
+        currNode.State(3,2)==8 && ...
+        currNode.State(4,2)==12)
         path=backtrack(currNode); % backtrack the path of solution
         depth=currNode.Depth;        
         time=toc;
-        disp('have solution');
         return           
     else
         nodeMoveUp = moveUp(currNode); % node after move up
@@ -68,9 +67,9 @@ while indx <= length(queue)
 end
 
 %%
-if (currNode.State(2,2)~=1 || ...
-    currNode.State(3,2)~=2 || ...
-    currNode.State(4,2)~=3)
+if (currNode.State(2,2)~=4 || ...
+    currNode.State(3,2)~=8 || ...
+    currNode.State(4,2)~=12)
     path=backtrack(currNode);
     depth=currNode.Depth;        
     time=toc;

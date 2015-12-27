@@ -70,7 +70,6 @@ flag=isVisited(startNode,visited);
 %%
 if 1~=2
     disp('sssss');
-    disp('sssss');
 end
 
 
