@@ -5,14 +5,14 @@ Iterative-Deeping Search
 
 function [depth, time, path] = IDS(startNode)
 globalStartNode=startNode;
+tic
 
 for depthLimit=1:16
-    tic
     visited={}; % null cell
-    solved=0;
     stack=globalStartNode; % stack stores nodes that is unvisited
-    indx=1; % index of stack
-    
+    indx=length(stack); % index of stack
+    unexpanded_nodes=stack;
+    unexpanded_nodes_indx=1;
 
     while indx > 0
         currNode=stack(indx);
@@ -29,7 +29,10 @@ for depthLimit=1:16
         if (currNode.State(2,2)==1 && ...
             currNode.State(3,2)==2 && ...
             currNode.State(4,2)==3)
-            solved=1;
+            path=backtrack(currNode); % backtrack the path of solution
+            depth=currNode.Depth;        
+            time=toc;
+            disp('have solution');
             return  
 
         elseif(currNode.Depth<=depthLimit) % 1.with depth limitation      
@@ -73,11 +76,12 @@ for depthLimit=1:16
                 stack(indx) = nodeAfterMoveRight;
             end
         else
-            
+            unexpanded_nodes(unexpanded_nodes_indx) = currNode;
+            unexpanded_nodes_indx = unexpanded_nodes_indx + 1;            
         end % if end
     end % while end
+    globalStartNode=unexpanded_nodes;
 end % for end
-
 
 %%
 if (currNode.State(2,2)~=1 || ...

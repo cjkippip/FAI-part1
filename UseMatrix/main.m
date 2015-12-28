@@ -26,12 +26,20 @@ startState
 goalState
 %%
 % Depth-First Search considering visited nodes
-[depth, time, path] = DFSvisited(startNode);
+% [depth, time, path] = DFSvisited(startNode);
 %%
 % Depth-First Search without considering visited nodes
 % [depth, time, path] = DFS(startNode);
 %%
 % Breadth-First Search 
 % [depth, time, path] = BFS(startNode);
+%%
+% Iterative-Deeping Search
+[depth, time, path] = IDS(startNode);
+
+
+
+
+
 
 
