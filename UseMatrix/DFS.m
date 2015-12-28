@@ -36,41 +36,41 @@ while indx > 0
         for i=1:4
             switch(rnd(i))
                 case(1)
-                    nodeMoveUp = moveUp(currNode); % node after move up
+                    nodeAfterMoveUp = moveUp(currNode); % node after move up
                     % if the the state after moving is not equal to 
                     % current node's state and it is not visited
-                    if(~isequal(nodeMoveUp.State, currNode.State))
-                        nodeMoveUp.Parent = currNode; % parent node is current node           
-                        nodeMoveUp.Depth = currNode.Depth + 1;
+                    if(~isequal(nodeAfterMoveUp.State, currNode.State))
+                        nodeAfterMoveUp.Parent = currNode; % parent node is current node           
+                        nodeAfterMoveUp.Depth = currNode.Depth + 1;
                         indx = indx + 1;
-                        stack(indx) = nodeMoveUp; % push in stack            
+                        stack(indx) = nodeAfterMoveUp; % push in stack            
                     end
 
                 case(2)
-                    nodeMoveDown = moveDown(currNode);
-                    if(~isequal(nodeMoveDown.State, currNode.State))
-                        nodeMoveDown.Parent = currNode;
-                        nodeMoveDown.Depth = currNode.Depth + 1;
+                    nodeAfterMoveDown = moveDown(currNode);
+                    if(~isequal(nodeAfterMoveDown.State, currNode.State))
+                        nodeAfterMoveDown.Parent = currNode;
+                        nodeAfterMoveDown.Depth = currNode.Depth + 1;
                         indx = indx + 1;
-                        stack(indx) = nodeMoveDown;        
+                        stack(indx) = nodeAfterMoveDown;        
                     end  
 
                 case(3)
-                    nodeMoveLeft = moveLeft(currNode);
-                    if(~isequal(nodeMoveLeft.State, currNode.State))
-                        nodeMoveLeft.Parent = currNode;
-                        nodeMoveLeft.Depth = currNode.Depth + 1;
+                    nodeAfterMoveLeft = moveLeft(currNode);
+                    if(~isequal(nodeAfterMoveLeft.State, currNode.State))
+                        nodeAfterMoveLeft.Parent = currNode;
+                        nodeAfterMoveLeft.Depth = currNode.Depth + 1;
                         indx = indx + 1;
-                        stack(indx) = nodeMoveLeft;
+                        stack(indx) = nodeAfterMoveLeft;
                     end
 
                 case(4)
-                    nodeMoveRight = moveRight(currNode);
-                    if(~isequal(nodeMoveRight.State, currNode.State))
-                        nodeMoveRight.Parent = currNode;
-                        nodeMoveRight.Depth = currNode.Depth + 1;
+                    nodeAfterMoveRight = moveRight(currNode);
+                    if(~isequal(nodeAfterMoveRight.State, currNode.State))
+                        nodeAfterMoveRight.Parent = currNode;
+                        nodeAfterMoveRight.Depth = currNode.Depth + 1;
                         indx = indx + 1;
-                        stack(indx) = nodeMoveRight;
+                        stack(indx) = nodeAfterMoveRight;
                     end
             end % switch end
         end % for and

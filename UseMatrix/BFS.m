@@ -31,38 +31,38 @@ while indx <= length(queue)
         disp('have solution');
         return           
     else
-        nodeMoveUp = moveUp(currNode); % node after move up
-        flag=isVisited(nodeMoveUp,visited); % flag of isVisited
+        nodeAfterMoveUp = moveUp(currNode); % node after move up
+        flag=isVisited(nodeAfterMoveUp,visited); % flag of isVisited
         % if the the state after moving is not equal to 
         % current node's state and it is not visited
-        if(~isequal(nodeMoveUp.State, currNode.State) && flag==0)
-            nodeMoveUp.Parent = currNode; % parent node is current node           
-            nodeMoveUp.Depth = currNode.Depth + 1;
-            queue(length(queue)+1)=nodeMoveUp;
+        if(~isequal(nodeAfterMoveUp.State, currNode.State) && flag==0)
+            nodeAfterMoveUp.Parent = currNode; % parent node is current node           
+            nodeAfterMoveUp.Depth = currNode.Depth + 1;
+            queue(length(queue)+1)=nodeAfterMoveUp;
         end
 
-        nodeMoveDown = moveDown(currNode);
-        flag=isVisited(nodeMoveDown,visited);
-        if(~isequal(nodeMoveDown.State, currNode.State) && flag==0)
-            nodeMoveDown.Parent = currNode;
-            nodeMoveDown.Depth = currNode.Depth + 1;
-            queue(length(queue)+1)=nodeMoveDown;
+        nodeAfterMoveDown = moveDown(currNode);
+        flag=isVisited(nodeAfterMoveDown,visited);
+        if(~isequal(nodeAfterMoveDown.State, currNode.State) && flag==0)
+            nodeAfterMoveDown.Parent = currNode;
+            nodeAfterMoveDown.Depth = currNode.Depth + 1;
+            queue(length(queue)+1)=nodeAfterMoveDown;
         end  
 
-        nodeMoveLeft = moveLeft(currNode);
-        flag=isVisited(nodeMoveLeft,visited);
-        if(~isequal(nodeMoveLeft.State, currNode.State) && flag==0)
-            nodeMoveLeft.Parent = currNode;
-            nodeMoveLeft.Depth = currNode.Depth + 1;
-            queue(length(queue)+1)=nodeMoveLeft;
+        nodeAfterMoveLeft = moveLeft(currNode);
+        flag=isVisited(nodeAfterMoveLeft,visited);
+        if(~isequal(nodeAfterMoveLeft.State, currNode.State) && flag==0)
+            nodeAfterMoveLeft.Parent = currNode;
+            nodeAfterMoveLeft.Depth = currNode.Depth + 1;
+            queue(length(queue)+1)=nodeAfterMoveLeft;
         end
 
-        nodeMoveRight = moveRight(currNode);
-        flag=isVisited(nodeMoveRight,visited);
-        if(~isequal(nodeMoveRight.State, currNode.State) && flag==0)
-            nodeMoveRight.Parent = currNode;
-            nodeMoveRight.Depth = currNode.Depth + 1;
-            queue(length(queue)+1)=nodeMoveRight;
+        nodeAfterMoveRight = moveRight(currNode);
+        flag=isVisited(nodeAfterMoveRight,visited);
+        if(~isequal(nodeAfterMoveRight.State, currNode.State) && flag==0)
+            nodeAfterMoveRight.Parent = currNode;
+            nodeAfterMoveRight.Depth = currNode.Depth + 1;
+            queue(length(queue)+1)=nodeAfterMoveRight;
         end
     end
 end

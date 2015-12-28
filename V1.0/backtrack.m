@@ -6,4 +6,6 @@ function path = backtrack(node)
         i = i + 1;
         path(i) = node;
     end
+    
+    path = fliplr(path);
 end
