@@ -11,8 +11,8 @@ for depthLimit=1:16
     visited={}; % null cell
     stack=globalStartNode; % stack stores nodes that is unvisited
     indx=length(stack); % index of stack
-    unexpanded_nodes=stack;
-    unexpanded_nodes_indx=1;
+    endNodes=stack;% last leaf nodes for every depth limitation 
+    endNodesIndx=1;
 
     while indx > 0
         currNode=stack(indx);
@@ -77,11 +77,11 @@ for depthLimit=1:16
                 stack(indx) = nodeAfterMoveRight;
             end
         else
-            unexpanded_nodes(unexpanded_nodes_indx) = currNode;
-            unexpanded_nodes_indx = unexpanded_nodes_indx + 1;            
+            endNodes(endNodesIndx) = currNode;
+            endNodesIndx = endNodesIndx + 1;            
         end % if end
     end % while end
-    globalStartNode=unexpanded_nodes;
+    globalStartNode=endNodes;
 end % for end
 
 %%
@@ -90,7 +90,7 @@ if (currNode.State(2,2)~=1 || ...
     currNode.State(4,2)~=3)
     path=backtrack(currNode);
     depth=currNode.Depth;        
-    time=toc;
+    realTime=toc;
     disp('no solution');
 end    
 end

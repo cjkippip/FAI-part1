@@ -84,7 +84,7 @@ if (currNode.State(2,2)~=1 || ...
     currNode.State(4,2)~=3)
     path=backtrack(currNode);
     depth=currNode.Depth;        
-    time=toc;
+    realTime=toc;
     disp('no solution');
 end
 end
