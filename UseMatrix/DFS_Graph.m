@@ -33,7 +33,7 @@ while indx > 0
         disp('have solution');
         return  
         
-    elseif(currNode.Depth<=15) % 1.with depth limitation: 14      
+    elseif(currNode.Depth<=15) % 1.with depth limitation      
 %     else % 2.no depth limitation
 
         nodeAfterMoveUp = moveUp(currNode); % node after move up
