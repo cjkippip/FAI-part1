@@ -1,17 +1,20 @@
 %{
 Fundation of AI coursework part 1
-Breadth-First Search
+Depth-First Search Graph
+1.with depth limitation   
+2.no depth limitation
 %}
+function [depth, realTime, path] = DFS_Graph(startNode)
 
-function [depth, realTime, path] = BFS(startNode)
 tic
-queue=startNode; % stack stores nodes that is unvisited
-startNode.Parent=[];
-indx=1;
+visited={}; % null cell
+stack=startNode; % stack stores nodes that is unvisited
+indx=1; % index of stack
 
-while indx <= length(queue)
-    currNode=queue(indx);
-    indx=indx + 1; 
+while indx > 0
+    currNode=stack(indx);
+    indx=indx - 1; % remove visited node
+    visited{1,length(visited)+1} = currNode.State; % add visited node
     % show the process
     currDepth=currNode.Depth;
     currState=currNode.State;
@@ -28,35 +31,47 @@ while indx <= length(queue)
         depth=currNode.Depth;        
         realTime=toc;
         disp('have solution');
-        return           
-    else
+        return  
+        
+    elseif(currNode.Depth<=15) % 1.with depth limitation: 14      
+%     else % 2.no depth limitation
+
         nodeAfterMoveUp = moveUp(currNode); % node after move up
+        flag=isVisited(nodeAfterMoveUp,visited); % flag of isVisited
         % if it can move(CantMove==0) 
-        if(nodeAfterMoveUp.CantMove==0)
+        % if it is not visited
+        if(nodeAfterMoveUp.CantMove==0 && flag==0)
             nodeAfterMoveUp.Parent = currNode; % parent node is current node           
             nodeAfterMoveUp.Depth = currNode.Depth + 1;
-            queue(length(queue)+1)=nodeAfterMoveUp;
+            indx = indx + 1;
+            stack(indx) = nodeAfterMoveUp; % push in stack            
         end
 
         nodeAfterMoveDown = moveDown(currNode);
-        if(nodeAfterMoveDown.CantMove==0)
+        flag=isVisited(nodeAfterMoveDown,visited);
+        if(nodeAfterMoveDown.CantMove==0 && flag==0)
             nodeAfterMoveDown.Parent = currNode;
             nodeAfterMoveDown.Depth = currNode.Depth + 1;
-            queue(length(queue)+1)=nodeAfterMoveDown;
+            indx = indx + 1;
+            stack(indx) = nodeAfterMoveDown;        
         end  
 
         nodeAfterMoveLeft = moveLeft(currNode);
-        if(nodeAfterMoveLeft.CantMove==0)
+        flag=isVisited(nodeAfterMoveLeft,visited);
+        if(nodeAfterMoveLeft.CantMove==0 && flag==0)
             nodeAfterMoveLeft.Parent = currNode;
             nodeAfterMoveLeft.Depth = currNode.Depth + 1;
-            queue(length(queue)+1)=nodeAfterMoveLeft;
+            indx = indx + 1;
+            stack(indx) = nodeAfterMoveLeft;
         end
 
         nodeAfterMoveRight = moveRight(currNode);
-        if(nodeAfterMoveRight.CantMove==0)
+        flag=isVisited(nodeAfterMoveRight,visited);
+        if(nodeAfterMoveRight.CantMove==0 && flag==0)
             nodeAfterMoveRight.Parent = currNode;
             nodeAfterMoveRight.Depth = currNode.Depth + 1;
-            queue(length(queue)+1)=nodeAfterMoveRight;
+            indx = indx + 1;
+            stack(indx) = nodeAfterMoveRight;
         end
     end
 end
@@ -70,6 +85,9 @@ if (currNode.State(2,2)~=1 || ...
     depth=currNode.Depth;        
     realTime=toc;
     disp('no solution');
-    return
-end  
+end    
 end
+
+
+
+

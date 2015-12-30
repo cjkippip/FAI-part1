@@ -1,10 +1,10 @@
 %{
 Fundation of AI coursework part 1
-Depth-First Search considering visited nodes
+Depth-First Search Graph
 1.with depth limitation   
 2.no depth limitation
 %}
-function [depth, realTime, path] = DFSvisited(startNode)
+function [depth, realTime, path] = DFS_Graph(startNode)
 
 tic
 visited={}; % null cell
@@ -22,25 +22,25 @@ while indx > 0
     currState
     
 %% 
-    % Estimate if get the goalNode(don't care about the position of agent)
-    % Just care about the positions of 'A', 'B' and 'C'.
+    % Estimate if get the goalNode
     if (currNode.State(2,2)==1 && ...
             currNode.State(3,2)==2 && ...
-            currNode.State(4,2)==3)
+            currNode.State(4,2)==3 && ...
+            currNode.State(4,4)==4)
         path=backtrack(currNode); % backtrack the path of solution
         depth=currNode.Depth;        
         realTime=toc;
         disp('have solution');
         return  
         
-    elseif(currNode.Depth<=14) % 1.with depth limitation: 14      
+    elseif(currNode.Depth<=15) % 1.with depth limitation: 14      
 %     else % 2.no depth limitation
 
         nodeAfterMoveUp = moveUp(currNode); % node after move up
         flag=isVisited(nodeAfterMoveUp,visited); % flag of isVisited
-        % if the the state after moving is not equal to 
-        % current node's state and it is not visited
-        if(~isequal(nodeAfterMoveUp.State, currNode.State) && flag==0)
+        % if it can move(CantMove==0) 
+        % if it is not visited
+        if(nodeAfterMoveUp.CantMove==0 && flag==0)
             nodeAfterMoveUp.Parent = currNode; % parent node is current node           
             nodeAfterMoveUp.Depth = currNode.Depth + 1;
             indx = indx + 1;
@@ -49,7 +49,7 @@ while indx > 0
 
         nodeAfterMoveDown = moveDown(currNode);
         flag=isVisited(nodeAfterMoveDown,visited);
-        if(~isequal(nodeAfterMoveDown.State, currNode.State) && flag==0)
+        if(nodeAfterMoveDown.CantMove==0 && flag==0)
             nodeAfterMoveDown.Parent = currNode;
             nodeAfterMoveDown.Depth = currNode.Depth + 1;
             indx = indx + 1;
@@ -58,7 +58,7 @@ while indx > 0
 
         nodeAfterMoveLeft = moveLeft(currNode);
         flag=isVisited(nodeAfterMoveLeft,visited);
-        if(~isequal(nodeAfterMoveLeft.State, currNode.State) && flag==0)
+        if(nodeAfterMoveLeft.CantMove==0 && flag==0)
             nodeAfterMoveLeft.Parent = currNode;
             nodeAfterMoveLeft.Depth = currNode.Depth + 1;
             indx = indx + 1;
@@ -67,7 +67,7 @@ while indx > 0
 
         nodeAfterMoveRight = moveRight(currNode);
         flag=isVisited(nodeAfterMoveRight,visited);
-        if(~isequal(nodeAfterMoveRight.State, currNode.State) && flag==0)
+        if(nodeAfterMoveRight.CantMove==0 && flag==0)
             nodeAfterMoveRight.Parent = currNode;
             nodeAfterMoveRight.Depth = currNode.Depth + 1;
             indx = indx + 1;
@@ -79,7 +79,8 @@ end
 %%
 if (currNode.State(2,2)~=1 || ...
     currNode.State(3,2)~=2 || ...
-    currNode.State(4,2)~=3)
+    currNode.State(4,2)~=3 || ...
+    currNode.State(4,4)==4)
     path=backtrack(currNode);
     depth=currNode.Depth;        
     realTime=toc;

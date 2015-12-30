@@ -87,13 +87,7 @@ closList(1)=[];
 closList(length(closList)+1)=startNode;
 %%
 showPath(path);
-%%
-A1=[0 0 0 0;0 1 0 0;0 2 0 0;0 3 0 4];
-A2=sparse(A1);
-B1=[0 0 0 0;0 1 0 0;0 2 0 4;0 3 0 0];
-B2=sparse(B1);
-%%
-if ~isequal(A2,B2)
-    disp('sssss');
-end
+
+
+
 

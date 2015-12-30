@@ -1,7 +1,6 @@
 %{
 Fundation of AI coursework part 1
 A-Star Search
-primary
 %}
 
 function [depth, realTime, path] = AStar(startNode)
@@ -49,8 +48,8 @@ while ~isempty(openList)
 %%    
     flag=1;
     nodeAfterMoveUp = moveUp(currNode); % node after move up
-    % if it can move(CantMove==0)
-    if nodeAfterMoveUp.CantMove==0
+    % if the the state after moving is not equal to current node's state
+    if ~isequal(nodeAfterMoveUp.State, currNode.State)
         for i=1:length(closList)
             % if the state after moving is equal to one member of close list
             if isequal(closList(i).State, nodeAfterMoveUp.State)
@@ -67,7 +66,7 @@ while ~isempty(openList)
 %%   
     flag=1;
     nodeAfterMoveDown = moveDown(currNode); 
-    if nodeAfterMoveDown.CantMove==0
+    if ~isequal(nodeAfterMoveDown.State, currNode.State)
         for i=1:length(closList)
             if isequal(closList(i).State, nodeAfterMoveDown.State)
                 flag=0;
@@ -83,7 +82,7 @@ while ~isempty(openList)
 %%   
     flag=1;
     nodeAfterMoveLeft = moveLeft(currNode);
-    if nodeAfterMoveLeft.CantMove==0
+    if ~isequal(nodeAfterMoveLeft.State, currNode.State)
         for i=1:length(closList)
             if isequal(closList(i).State, nodeAfterMoveLeft.State)
                 flag=0;
@@ -99,7 +98,7 @@ while ~isempty(openList)
 %%   
     flag=1;
     nodeAfterMoveRight = moveRight(currNode);
-    if nodeAfterMoveRight.CantMove==0
+    if ~isequal(nodeAfterMoveRight.State, currNode.State)
         for i=1:length(closList)
             if isequal(closList(i).State, nodeAfterMoveRight.State)
                 flag=0;

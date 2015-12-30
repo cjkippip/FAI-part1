@@ -4,7 +4,7 @@ classdef node
         Depth
         FCost
         GCost
-        Direction
+        Move
         Parent
         CantMove
     end
@@ -20,10 +20,10 @@ classdef node
         
         function obj = moveUp(obj)
             [row,col]=find(obj.State==4);
-            if row>=2 % in this condition, node can move
+            if row>=2
                 obj.State(row,col)=obj.State(row-1,col);
                 obj.State(row-1,col)=4;
-            else % out of boundary, CantMove=1
+            else
                 obj.CantMove=1;
             end
         end 
