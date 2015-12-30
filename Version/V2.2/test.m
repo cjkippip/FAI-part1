@@ -96,22 +96,4 @@ B2=sparse(B1);
 if ~isequal(A2,B2)
     disp('sssss');
 end
-%%
-A=[0 0 0 0;0 1 0 0;0 2 0 0;0 3 0 4];
-a=[0 3 0 4];
-b=[1 0 0 0];
-%%
-ssss=ismember(a,A,'rows');
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -17,7 +17,9 @@ classdef node
             nodeData.GCost=0;
             nodeData.CantMove=0;
         end
-             
+        
+        
+        
         function obj = moveUp(obj)
             [row,col]=find(obj.State==4);
             if row>=2 % in this condition, node can move
