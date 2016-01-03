@@ -1,5 +1,8 @@
 %{
 Fundation of AI coursework part 1
+These part is not well, a lot of details should be modified and debug.
+Because I just make programmes run instead of considering efficiency.
+I will fix all problems in part2.
 %}
 clc
 clear

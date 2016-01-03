@@ -1,4 +1,8 @@
 classdef node
+%{
+Class node
+Reference:https://github.com/Icarurs/matlab-8-puzzle/blob/master/puzzle.m
+%}
     properties
         State
         Depth

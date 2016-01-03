@@ -3,15 +3,16 @@ Fundation of AI coursework part 1
 Depth-First Search 
 1.with depth limitation   
 2.no depth limitation
+Reference: https://github.com/cjkippip/8-puzzle/blob/master/DFS.m
 %}
 
 function [depth, realTime, path] = DFS(startNode)
 tic
-stack=startNode; % stack stores nodes that is unvisited
+myStack=startNode; % stack stores nodes that is unvisited
 indx=1; % index of stack
 
 while indx > 0
-    currNode=stack(indx);
+    currNode=myStack(indx);
     indx=indx - 1; % remove visited node
     % show the process
     currDepth=currNode.Depth;
@@ -33,9 +34,9 @@ while indx > 0
 %     elseif(currNode.Depth<=14) % 1.with depth limitation      
     else % 2.no depth limitation    
         
-        rnd=randperm(4);   
+        randomNums=randperm(4);   
         for i=1:4
-            switch(rnd(i))
+            switch(randomNums(i))
                 case(1)
                     nodeAfterMoveUp = moveUp(currNode); % node after move up
                     % if it can move(CantMove==0)
@@ -43,7 +44,7 @@ while indx > 0
                         nodeAfterMoveUp.Parent = currNode; % parent node is current node           
                         nodeAfterMoveUp.Depth = currNode.Depth + 1;
                         indx = indx + 1;
-                        stack(indx) = nodeAfterMoveUp; % push in stack            
+                        myStack(indx) = nodeAfterMoveUp; % push in stack            
                     end
 
                 case(2)
@@ -52,7 +53,7 @@ while indx > 0
                         nodeAfterMoveDown.Parent = currNode;
                         nodeAfterMoveDown.Depth = currNode.Depth + 1;
                         indx = indx + 1;
-                        stack(indx) = nodeAfterMoveDown;        
+                        myStack(indx) = nodeAfterMoveDown;        
                     end  
 
                 case(3)
@@ -61,7 +62,7 @@ while indx > 0
                         nodeAfterMoveLeft.Parent = currNode;
                         nodeAfterMoveLeft.Depth = currNode.Depth + 1;
                         indx = indx + 1;
-                        stack(indx) = nodeAfterMoveLeft;
+                        myStack(indx) = nodeAfterMoveLeft;
                     end
 
                 case(4)
@@ -70,7 +71,7 @@ while indx > 0
                         nodeAfterMoveRight.Parent = currNode;
                         nodeAfterMoveRight.Depth = currNode.Depth + 1;
                         indx = indx + 1;
-                        stack(indx) = nodeAfterMoveRight;
+                        myStack(indx) = nodeAfterMoveRight;
                     end
             end % switch end
         end % for and
